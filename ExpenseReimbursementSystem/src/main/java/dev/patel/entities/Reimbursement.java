@@ -108,7 +108,7 @@ public class Reimbursement {
 	public String toString() {
 		return "Reimbursement [reimbursementId=" + reimbursementId + ", employeeId=" + employeeId + ", managerId="
 				+ managerId + ", status=" + status + ", amount=" + amount + ", requestedDate=" + requestedDate
-				+ ", description=" + description + ", expenseDate=" + expenseDate + ", type=" + type + "]";
+				+ ", description=" + description + ", expenseDate=" + expenseDate + ", type=" + type + "]\n";
 	}
 	
 	
