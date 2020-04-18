@@ -10,7 +10,9 @@ public interface EmployeeDAO {
 	Employee getEmployeeById(int id);
 	Employee getEmployeeByUsername(String username);
 	Employee validateEmployee(String username, String password);
+
 	Employee updateEmployee(Employee employee);
 	boolean deleteEmployee(Employee employee);
+
 
 }

@@ -6,12 +6,18 @@ import dev.patel.entities.Manager;
 
 public interface ManagerDAO {
 	
-	
+
 	List<Manager> getAllManagers();
 	Manager getManagerById(int id) throws Exception;
 	Manager getManagerByUsername(String username);
 	Manager validateManager(String username, String password);
 	Manager updateManager(Manager manager);
 	boolean deleteManager(Manager manager);
+
+	List<Manager> getManagers();
+	Manager getManagerByID(int id);
+	Manager UpdateManager(Manager manager);
+	boolean DeleteManager(Manager manager);
+
 
 }

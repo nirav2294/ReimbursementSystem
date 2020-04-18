@@ -1,5 +1,6 @@
 package dev.patel.daos;
 
+<<<<<<< Implement-Dao
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -136,7 +137,4 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 		return true;
 	}
-
-
-
 }
