@@ -1,5 +1,63 @@
+<!DOCTYPE html>
 <html>
+
+<head>
+    <link rel="stylesheet" href="CSS/Login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+
+</head>
+
 <body>
-<h2>Hello World!</h2>
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-6 login-form-1">
+
+
+                <form>
+                    <h3>Login for Employee</h3>
+                    <div class="form-group">
+                        <div id="alertmessage" class="alert alert-error" style="color:red" style="font-size: 10px;">
+                        </div>
+
+                        <input id="eUsername" class="form-control" type="text" placeholder="Username *" required />
+                    </div>
+                    <div class="form-group">
+                        <input id="ePassword" class="form-control" type="password" placeholder="Password *" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="button" id="eLogin" class="btnSubmit" value="Login" />
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 login-form-2">
+
+                <form>
+                    <h3>Login for Manager</h3>
+                    <div class="form-group">
+                        <div id="alertmessagem" class="alert alert-error" style="color:red" style="font-size: 10px;">
+                        </div>
+                        <input id="mUsername" name="musername" class="form-control" type="text" placeholder="Username *"
+                            required="required" />
+                    </div>
+                    <div class="form-group">
+                        <input id="mPassword" name="mpassword" class="form-control" type="password"
+                            placeholder="Password *" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <input type="button" id="mLogin" class="btnSubmit" value="Login" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="JS/index.js">
+
+
+</script>
+
 </html>

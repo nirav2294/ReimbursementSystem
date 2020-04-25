@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="Manager/ManagerFooter&Navbar.js"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Manager Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+
+</head>
+
+<body>
+
+  <div id="manager-placeholder"></div>
+  <div class="container">
+      <div class="card"> </div>
+
+      <div class="jumbotron" style="padding-top: 0px;">
+
+
+          <div class="container"></div>
+          <p></p>
+          <div class="card-body"
+              style="margin-bottom: auto; margin-top: auto; margin-right: auto; padding-top: 20px; padding-bottom: 0px; font-weight: 500; display: block; top: auto; bottom: auto; float: none; line-height: 24px; width: 642px;"
+              id="title">
+              <h6 class="card-title"
+                  style="float: none; display: block; top: auto; text-align: left; text-decoration-line: none;"
+                  contenteditable="false" spellcheckker="false">Reimbursements Assigned to you</h6>
+          </div>
+          <hr style="font-weight: 900; line-height: 20px;">
+          <div class="table-responsive">
+              <table class="card-table table" id="tableData">
+                  <thead>
+                      <tr>
+                          <th>R_Id</th>
+                          <th>E_Id</th>
+                          <th>Manager</th>
+                          <th>Request Date</th>
+                          <th>Description</th>
+                          <th>Expense Date</th>
+                          <th>Reimbursement Type</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+      </div>
+      <div class="row marketing">
+      </div>
+
+      <div id="footer-placeholder"></div>
+
+  </div> <!-- /container -->
+
+</body>
+
+<script>
+    async function myFunction() {
+
+let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/EmployeeHome");
+
+if(httpResponse.status === 403){
+    window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+}
+let reimbursements = await httpResponse.json();
+
+let managerRay = [];
+for (var i = 0; i < reimbursements.length; i++) {
+    let obj = reimbursements[i];
+    managerRay.push(obj.managerId);
+}
+let jsonString = JSON.stringify(managerRay);
+let settings = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(jsonString)
+}
+httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/ManagerDetails", settings);
+let managers = await httpResponse.json();
+console.log(reimbursements);
+console.log(managers)
+
+let tableData = document.getElementById("tableData");
+for (i = 0; i < reimbursements.length; i++) {
+    tableData.innerHTML = tableData.innerHTML + `<tr><th>${reimbursements[i].reimbursementId}</th><td>${reimbursements[i].employeeId}</td>
+<td>${managers[i].firstName} ${managers[i].lastName}</td><td>${reimbursements[i].requestedDate}</td><td>${reimbursements[i].description}</td>
+    <td>${reimbursements[i].expenseDate}</td><td>${reimbursements[i].type}</td><td>${reimbursements[i].amount}</td>
+    <td>${reimbursements[i].status}</td></tr>`
+
+}
+
+
+}
+</script>
+
+</html>

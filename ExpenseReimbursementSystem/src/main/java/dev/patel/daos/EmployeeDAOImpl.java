@@ -1,6 +1,5 @@
 package dev.patel.daos;
 
-<<<<<<< Implement-Dao
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.patel.entities.Employee;
+import dev.patel.exceptions.UserNotFoundException;
 import dev.patel.utils.ConnectionUtil;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -54,8 +54,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			System.out.println(e);
+		} 
 		return null;
 	}
 
@@ -77,13 +77,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
 		return null;
 	}
 
 	@Override
-	public Employee validateEmployee(String username, String password) {
+	public Employee validateEmployee(String username, String password) throws UserNotFoundException {
 		String sql = "SELECT * FROM Project1.EMPLOYEE ";
 		try (Connection conn = ConnectionUtil.createConnection()) {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -99,12 +99,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				} 
 
 			}
+			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e);
 			System.out.println("Wrong username or password!!");
 			return null;
 		} 
-		return null;
+		throw new UserNotFoundException("Invalid Username or Password!!");
 	}
 
 	public Employee updateEmployee(Employee employee) {
@@ -120,7 +121,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			ps.executeUpdate();
 			return employee;
 		}catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
 		return employee;
 	}
@@ -133,8 +134,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			boolean success = post.execute();
 			return success;
 		}catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
 		return true;
 	}
+
+
+
 }

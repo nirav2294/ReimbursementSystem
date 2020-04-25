@@ -1,24 +1,24 @@
-package dev.patel.daos;
+package dev.patel.services;
 
 import java.util.List;
 
 import dev.patel.entities.Reimbursement;
 
-public interface ReimbursementDAO {
+public interface ReimbursementService {
 	
-	Reimbursement createReimbursement(Reimbursement reimbursement);
-	
+	Reimbursement submitReimbursement(Reimbursement reimbursement);
 	List<Reimbursement> getAllReimbursements();
-	Reimbursement getReimbursementById(int id);
-	List<Reimbursement> getPendingReimbursements();
 	List<Reimbursement> getApprovedReimbursements();
 	List<Reimbursement> getDeniedReimbursements();
+	List<Reimbursement> getPendingReimbursements();
 	List<Reimbursement> getReimbursementByEmployeeId(int employeeId);
 	List<Reimbursement> getPendingRequestsByEmployeeId(int employeeId);
 	List<Reimbursement> getApprovedRequestsByEmployeeId(int employeeId);
-	
 	List<Reimbursement> getReimbursementsByManagerId(int managerId);
 	
-	Reimbursement updateReimbursement(Reimbursement reimbursement);
+	
+	Reimbursement approveReimbursement(Reimbursement reimbursement);
+	Reimbursement denyReimbursement(Reimbursement reimbursement);
+
 
 }

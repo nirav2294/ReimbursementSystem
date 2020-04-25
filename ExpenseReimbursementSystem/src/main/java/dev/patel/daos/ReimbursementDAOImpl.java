@@ -48,7 +48,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
 	@Override
 	public List<Reimbursement> getAllReimbursements() {
-
 		String sql = "SELECT * FROM Project1.REIMBURSEMENT";
 		try (Connection conn = ConnectionUtil.createConnection()) {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -66,7 +65,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-
 		return null;
 	}
 
@@ -85,7 +83,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
 	@Override
 	public List<Reimbursement> getPendingReimbursements() {
-
 		List<Reimbursement> reimbursements = this.getAllReimbursements();
 		List<Reimbursement> pendingReimbursements = new ArrayList<Reimbursement>();
 		for(int i=0; i<reimbursements.size(); i++) {
@@ -120,7 +117,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 			}
 		}
 		return deniedReimbursements;
-
 	}
 
 	@Override
@@ -133,7 +129,6 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 			}
 		}
 		return employeeReimbursements;
-
 	}
 
 	@Override

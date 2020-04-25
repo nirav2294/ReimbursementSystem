@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import dev.patel.daos.EmployeeDAO;
 import dev.patel.daos.EmployeeDAOImpl;
-import dev.patel.entities.Employee;
+import dev.patel.entities.Employee;import dev.patel.exceptions.UserNotFoundException;
 
 public class EmployeeDAOImplTests {
 
@@ -27,7 +27,14 @@ public class EmployeeDAOImplTests {
 	
 	@Test
 	public void validateEmployee() {
-		System.out.println(empldao.validateEmployee("kushal104", "104kushal"));
+		
+		try {
+			System.out.println(empldao.validateEmployee("kushal104", "104kushal"));
+		}
+		catch (UserNotFoundException e){
+			System.out.println(e);
+		}
+		
 	}
 	
 	@Test

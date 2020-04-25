@@ -7,6 +7,7 @@ import org.junit.Test;
 import dev.patel.daos.ManagerDAO;
 import dev.patel.daos.ManagerDAOImpl;
 import dev.patel.entities.Manager;
+import dev.patel.exceptions.ManagerNotFoundException;
 
 public class ManagerDAOImplTests {
 
@@ -33,7 +34,7 @@ public class ManagerDAOImplTests {
 	}
 	
 	@Test
-	public void validateManager() {
+	public void validateManager() throws ManagerNotFoundException {
 		System.out.println(managerdao.validateManager("abhi23", "23abhi"));
 	}
 	
@@ -45,7 +46,7 @@ public class ManagerDAOImplTests {
 			manager.setPassword("meet0488");
 			System.out.println(managerdao.updateManager(manager));
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
 		
 	}
@@ -57,7 +58,7 @@ public class ManagerDAOImplTests {
 			manager = managerdao.getManagerById(3);
 			System.out.println(managerdao.deleteManager(manager));
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
 		
 	}

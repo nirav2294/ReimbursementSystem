@@ -81,7 +81,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 	}
 
 	@Override
-	public Manager validateManager(String username, String password) {
+	public Manager validateManager(String username, String password) throws ManagerNotFoundException {
 		String sql = "SELECT * FROM Project1.MANAGER ";
 		try (Connection conn = ConnectionUtil.createConnection()) {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 			System.out.println("Wrong username or password!!");
 			return null;
 		}
-		return null;
+		throw new ManagerNotFoundException("Incorrect username or password");
 	}
 
 	@Override

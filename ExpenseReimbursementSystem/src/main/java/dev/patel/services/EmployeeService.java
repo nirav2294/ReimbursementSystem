@@ -1,11 +1,11 @@
-package dev.patel.daos;
+package dev.patel.services;
 
 import java.util.List;
 
 import dev.patel.entities.Employee;
 import dev.patel.exceptions.UserNotFoundException;
 
-public interface EmployeeDAO {
+public interface EmployeeService {
 	
 	List<Employee> getAllEmployees();
 	Employee getEmployeeById(int id);
