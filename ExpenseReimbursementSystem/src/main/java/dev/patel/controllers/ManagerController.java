@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import dev.patel.entities.Employee;
 import dev.patel.entities.Manager;
+import dev.patel.entities.Reimbursement;
 import dev.patel.services.ManagerService;
 import dev.patel.services.ManagerServiceImpl;
+import dev.patel.services.ReimbursementService;
+import dev.patel.services.ReimbursementServiceImpl;
 
 public class ManagerController {
 
 	private ManagerService managerService = new ManagerServiceImpl();
+	private ReimbursementService reimburseService = new ReimbursementServiceImpl();
 	Gson gson = new Gson();
 
 	public void getManagerName(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -43,6 +48,7 @@ public class ManagerController {
 	public void getAllManagers(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
+			
 			List<Manager> managers = managerService.getAllManagers();
 			PrintWriter pw = response.getWriter();
 			String json = gson.toJson(managers);
@@ -52,5 +58,124 @@ public class ManagerController {
 			System.out.println(e);
 		}
 	}
+	
+	public void displayManagerReimbursements(HttpServletRequest request, HttpServletResponse response) {
+		PrintWriter pw;
+		try {
+
+			pw = response.getWriter();
+			if ((String) request.getSession().getAttribute("username") == null) {
+				response.sendError(403);
+			} else {
+				String username = (String) request.getSession().getAttribute("username");
+				Manager manager = managerService.getManagerByUsername(username);
+				if (manager != null) {
+					List<Reimbursement> reimbursements = reimburseService
+							.getPendingRequestsByManagerId(manager.getManagerId());
+					String json = gson.toJson(reimbursements);
+					pw.append(json);
+
+				}
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+	
+
+	public void AllPendingReimbursements(HttpServletRequest request, HttpServletResponse response) {
+		PrintWriter pw;
+		try {
+
+			pw = response.getWriter();
+			if ((String) request.getSession().getAttribute("username") == null) {
+				response.sendError(403);
+			} else {
+				String username = (String) request.getSession().getAttribute("username");
+				Manager manager = managerService.getManagerByUsername(username);
+				if (manager != null) {
+					List<Reimbursement> reimbursements = reimburseService
+							.getPendingReimbursements();
+					String json = gson.toJson(reimbursements);
+					pw.append(json);
+
+				}
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+
+	public void AllApprovedReimbursements(HttpServletRequest request, HttpServletResponse response) {
+		PrintWriter pw;
+		try {
+
+			pw = response.getWriter();
+			if ((String) request.getSession().getAttribute("username") == null) {
+				response.sendError(403);
+			} else {
+				String username = (String) request.getSession().getAttribute("username");
+				Manager manager = managerService.getManagerByUsername(username);
+				if (manager != null) {
+					List<Reimbursement> reimbursements = reimburseService
+							.getApprovedReimbursements();
+					String json = gson.toJson(reimbursements);
+					pw.append(json);
+
+				}
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		
+	}
+
+	public void AllDeniedReimbursements(HttpServletRequest request, HttpServletResponse response) {
+		PrintWriter pw;
+		try {
+
+			pw = response.getWriter();
+			if ((String) request.getSession().getAttribute("username") == null) {
+				response.sendError(403);
+			} else {
+				String username = (String) request.getSession().getAttribute("username");
+				Manager manager = managerService.getManagerByUsername(username);
+				if (manager != null) {
+					List<Reimbursement> reimbursements = reimburseService
+							.getDeniedReimbursements();
+					String json = gson.toJson(reimbursements);
+					pw.append(json);
+
+				}
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		
+	}
+
+	public void AllReimbursements(HttpServletRequest request, HttpServletResponse response) {
+		PrintWriter pw;
+		try {
+
+			pw = response.getWriter();
+			if ((String) request.getSession().getAttribute("username") == null) {
+				response.sendError(403);
+			} else {
+				String username = (String) request.getSession().getAttribute("username");
+				Manager manager = managerService.getManagerByUsername(username);
+				if (manager != null) {
+					List<Reimbursement> reimbursements = reimburseService
+							.getAllReimbursements();
+					String json = gson.toJson(reimbursements);
+					pw.append(json);
+
+				}
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+
 
 }

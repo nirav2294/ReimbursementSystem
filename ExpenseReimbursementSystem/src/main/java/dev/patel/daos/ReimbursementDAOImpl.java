@@ -169,7 +169,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 
 	@Override
 	public Reimbursement updateReimbursement(Reimbursement reimbursement) {
-		String sql = "UPDATE Project1.Reimbursement SET MANAGER_ID=?, STATUS=?, AMOUNT=?, DESCRIPTION=?, EXPENSE_DATE=? , REIMBURSEMENT_TYPE=? WHERE EMPLOYEE_ID=?";
+		String sql = "UPDATE Project1.REIMBURSEMENT SET MANAGER_ID=?, STATUS=?, AMOUNT=?, DESCRIPTION=?, EXPENSE_DATE=? , REIMBURSEMENT_TYPE=? WHERE REIMBURSEMENT_ID=?";
 		try(Connection conn = ConnectionUtil.createConnection()){
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -179,8 +179,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO{
 			ps.setString(4, reimbursement.getDescription());
 			ps.setDate(5, reimbursement.getExpenseDate());
 			ps.setString(6, reimbursement.getType());
-			ps.setInt(7, reimbursement.getEmployeeId());
-			
+			ps.setInt(7, reimbursement.getReimbursementId());
+			ps.execute();
 		} catch (SQLException e) {
 			System.out.println("Update reimbursement successful");
 			e.printStackTrace();

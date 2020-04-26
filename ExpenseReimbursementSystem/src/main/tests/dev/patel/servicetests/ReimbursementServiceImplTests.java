@@ -61,11 +61,26 @@ public class ReimbursementServiceImplTests {
 	@Test
 	public void approveReimbursement() {
 		
-		
+		Reimbursement reimbursement = rserv.getReimbursementById(2);
+		reimbursement.setStatus("Approved");
+		rserv.approveReimbursement(reimbursement);
 	}
 	@Test
 	public void denyRembursement() {
 		
 		
+	}
+	
+	@Test
+	public void getPendingRequestsByManagerId() {
+		System.out.println(rserv.getPendingRequestsByManagerId(1));
+	}
+	@Test
+	public void getApprovedRequestsByManagerId() {
+		System.out.println(rserv.getApprovedRequestsByManagerId(2));
+	}
+	@Test
+	public void getDeniedRequestsByManagerId() {
+		System.out.println(rserv.getDeniedRequestsByManagerId(2));
 	}
 }

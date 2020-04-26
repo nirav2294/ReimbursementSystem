@@ -16,13 +16,14 @@
     <style></style>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="JS/Footer&Navbar.js"></script>
+    <link rel="stylesheet" href="CSS/table.css">
 </head>
 
 <body onload="myFunction()">
 
     <div id="nav-placeholder"></div>
 
-    <div class="container">
+    <div class="max-width">
         <div class="card"> </div>
 
         <div class="jumbotron" style="padding-top: 0px;">
@@ -38,21 +39,23 @@
                     contenteditable="true" spellcheckker="false">Pending Requests</h6>
             </div>
             <hr style="font-weight: 900; line-height: 20px;">
-            <table class="table" id="tableData">
-                <thead>
-                    <tr>
-                        <th>R_Id</th>
-                        <th>E_Id</th>
-                        <th>Manager</th>
-                        <th>Request Date</th>
-                        <th>Description</th>
-                        <th>Expense Date</th>
-                        <th>Reimbursement Type</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="table-responsive">
+                <table class="card-table table" id="tableData">
+                    <thead>
+                        <tr>
+                            <th>R_Id</th>
+                            <th>E_Id</th>
+                            <th>Manager</th>
+                            <th>Request Date</th>
+                            <th>Description</th>
+                            <th>Expense Date</th>
+                            <th>Reimbursement Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
         <div class="row marketing">
         </div>
@@ -64,7 +67,7 @@
 
 
 <script src="JS/PendingRequests.js">
-   
+
 </script>
 
 </html>

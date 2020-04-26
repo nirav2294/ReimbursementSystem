@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import dev.patel.controllers.EmployeeHomeController;
 import dev.patel.controllers.LoginController;
 import dev.patel.controllers.ManagerController;
+import dev.patel.controllers.ReimbursementTypeController;
 
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,7 @@ public class DispatcherServlet extends HttpServlet {
 	LoginController loginController = new LoginController();
 	EmployeeHomeController employeeController = new EmployeeHomeController();
 	ManagerController managerController = new ManagerController();
+	ReimbursementTypeController rTypeController = new ReimbursementTypeController();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -62,9 +64,41 @@ public class DispatcherServlet extends HttpServlet {
 		case "/ExpenseReimbursementSystem/api/Logout":
 			loginController.logout(request, response);
 			break;
-			
 		case "/ExpenseReimbursementSystem/api/ManagerLoginPage":
 			loginController.managerLogin(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/ManagerHome":
+			managerController.displayManagerReimbursements(request, response);
+			break;
+			
+		case "/ExpenseReimbursementSystem/api/EmployeesDetails":
+			employeeController.getEmployeeName(request, response);
+			break;
+			
+		case "/ExpenseReimbursementSystem/api/ApproveReimbursement":
+			employeeController.approveReimbursement(request, response);
+			break;
+			
+		case "/ExpenseReimbursementSystem/api/DenyReimbursement":
+			employeeController.denyReimbursement(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/AllPendingReimbursements":
+			managerController.AllPendingReimbursements(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/AllApprovedReimbursements":
+			managerController.AllApprovedReimbursements(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/AllDeniedReimbursements":
+			managerController.AllDeniedReimbursements(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/AllReimbursements":
+			managerController.AllReimbursements(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/getReimbursementTypes":
+			rTypeController.getAllTypes(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/submitReimbursement":
+			rTypeController.submitReimbursement(request, response);
 			break;
 		
 		default:

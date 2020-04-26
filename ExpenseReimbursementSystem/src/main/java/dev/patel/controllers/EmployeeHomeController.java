@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.patel.entities.Employee;
+import dev.patel.entities.Manager;
 import dev.patel.entities.Reimbursement;
 import dev.patel.services.EmployeeService;
 import dev.patel.services.EmployeeServiceImpl;
@@ -28,6 +29,7 @@ public class EmployeeHomeController {
 
 	private ReimbursementService reimburseService = new ReimbursementServiceImpl();
 	private EmployeeService emplService = new EmployeeServiceImpl();
+	private ManagerService managerService = new ManagerServiceImpl();
 	Gson gson = new Gson();
 
 	public void displayReimbursement(HttpServletRequest request, HttpServletResponse response) {
@@ -180,7 +182,7 @@ public class EmployeeHomeController {
 				String body = request.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
 				Employee employee = gson.fromJson(body, Employee.class);
 				Employee currentDetails = emplService.getEmployeeById(employee.getEmployeeId());
-				
+
 				if(employee.getFirstName().equals(currentDetails.getPassword())) { // had to user FirstName to store old password coming from user
 					Employee updateEmployee = new Employee(currentDetails.getEmployeeId(), currentDetails.getFirstName(), currentDetails.getLastName(), 
 							currentDetails.getUserName(), currentDetails.getEmail(), employee.getPassword());
@@ -192,11 +194,76 @@ public class EmployeeHomeController {
 					response.setHeader("Content-Type", "application/json");
 					mapper.writeValue(response.getOutputStream(), false);
 				}
-				
+
 			}
 		}catch (IOException e) {
 			System.out.println(e);
 		}
+	}
+
+	public void getEmployeeName(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			List<Employee> employees = new ArrayList<Employee>();
+			PrintWriter pw = response.getWriter();
+			String body = request.getReader().lines().reduce("", (accumulator,actual) ->accumulator+actual);
+			for(int i=2; i<body.length()-2; i+=2) {
+				char temp = body.charAt(i);
+				int id = Character.getNumericValue(temp);
+
+				employees.add(emplService.getEmployeeById(id));
+
+			} 
+			String json = gson.toJson(employees);
+			System.out.println(json);
+			pw.append(json);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+
+	public void approveReimbursement(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+			if ((String) request.getSession().getAttribute("username") == null) {
+				response.sendError(403);
+			} else {
+				String managerUsername = (String) request.getSession().getAttribute("username");
+				Manager manager = managerService.getManagerByUsername(managerUsername);
+				PrintWriter pw = response.getWriter();
+				String body = request.getReader().lines().reduce("", (accumulator,actual) ->accumulator+actual);
+				Reimbursement reimbursement = gson.fromJson(body, Reimbursement.class);
+				reimbursement = reimburseService.getReimbursementById(reimbursement.getReimbursementId());
+				reimbursement.setStatus("Approved");
+				reimbursement.setManagerId(manager.getManagerId());
+				reimburseService.approveReimbursement(reimbursement);
+			}
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+
+	}
+
+	public void denyReimbursement(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+			if ((String) request.getSession().getAttribute("username") == null) {
+				response.sendError(403);
+			} else {
+				String managerUsername = (String) request.getSession().getAttribute("username");
+				Manager manager = managerService.getManagerByUsername(managerUsername);
+				PrintWriter pw = response.getWriter();
+				String body = request.getReader().lines().reduce("", (accumulator,actual) ->accumulator+actual);
+				Reimbursement reimbursement = gson.fromJson(body, Reimbursement.class);
+				reimbursement = reimburseService.getReimbursementById(reimbursement.getReimbursementId());
+				reimbursement.setStatus("Denied");
+				reimbursement.setManagerId(manager.getManagerId());
+				reimburseService.denyReimbursement(reimbursement);
+			}
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+
 	}
 
 }

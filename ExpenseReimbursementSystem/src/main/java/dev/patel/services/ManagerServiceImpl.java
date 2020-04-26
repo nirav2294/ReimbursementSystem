@@ -35,4 +35,10 @@ public class ManagerServiceImpl implements ManagerService{
 		return managerDAO.getManagerById(id);
 	}
 
+	@Override
+	public Manager getManagerByUsername(String username) {
+		
+		return managerDAO.getManagerByUsername(username);
+	}
+
 }

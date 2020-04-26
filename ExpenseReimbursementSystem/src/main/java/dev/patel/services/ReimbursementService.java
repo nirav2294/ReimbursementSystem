@@ -14,9 +14,14 @@ public interface ReimbursementService {
 	List<Reimbursement> getReimbursementByEmployeeId(int employeeId);
 	List<Reimbursement> getPendingRequestsByEmployeeId(int employeeId);
 	List<Reimbursement> getApprovedRequestsByEmployeeId(int employeeId);
+	
+	
 	List<Reimbursement> getReimbursementsByManagerId(int managerId);
+	List<Reimbursement> getPendingRequestsByManagerId(int managerId);
+	List<Reimbursement> getApprovedRequestsByManagerId(int managerId);
+	List<Reimbursement> getDeniedRequestsByManagerId(int managerId);
 	
-	
+	Reimbursement getReimbursementById(int id);
 	Reimbursement approveReimbursement(Reimbursement reimbursement);
 	Reimbursement denyReimbursement(Reimbursement reimbursement);
 

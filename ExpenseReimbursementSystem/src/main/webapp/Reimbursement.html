@@ -112,20 +112,9 @@
                 <div class="form-group row">
                     <label for="type" class="col-4 col-form-label">Reimbursement Type</label>
                     <div class="col-8">
-                        <select id="type" name="type" class="custom-select">
-                            <option value="rabbit">Rabbit</option>
-                            <option value="duck">Duck</option>
-                            <option value="fish">Fish</option>
+                        <select id="type" name="type" required="required" class="custom-select">
+                            <option selected disabled>Choose here</option>
                         </select>
-                    </div>
-                </div>
-                <div class="form-group row" >
-
-                    <label for="exampleFormControlFile1" class="col-4 col-form-label">Please upload any related
-                        files</label>
-                    <div class="col-8">
-                        <input name="fileupload"type="file" class="form-control-file" id="fileUpload" required="required"
-                            accept="image/*, .txt">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -142,52 +131,10 @@
         <div id="footer-placeholder"></div>
 
     </div> <!-- /container -->
-
-
 </body>
-<script>
-
-    async function myFunction() {
-
-        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getCurrentUser");
-        if (httpResponse.status === 403) {
-            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
-        }
-        let user = await httpResponse.json();
-        console.log(user.employeeId);
-        document.getElementById("employeeId").value = user.employeeId;
-        document.getElementById("firstName").value = user.firstName;
-        document.getElementById("lastName").value = user.lastName;
-
-        let httpResponse2 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getAllManagers");
-        if (httpResponse.status === 403) {
-            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
-        }
-        let managers = await httpResponse2.json();
-        console.log(managers)
-        let selectData = document.getElementById("managerId");
-        for (i = 0; i < managers.length; i++) {
-            var option = document.createElement('option');
-            option.innerHTML = managers[i].managerId + " | " + managers[i].firstName + " " + managers[i].lastName;
-            option.value = managers[i].managerId;
-            selectData.appendChild(option);
-        }
-
-        document.getElementById("employeeId").value = user.employeeId;
-        document.getElementById("employeeId").value = user.employeeId;
-        document.getElementById("employeeId").value = user.employeeId;
-    }
+<script src="JS/Reimbursement.js">
 
 
-
-    document.getElementById("reimbursementSubmit").addEventListener("click", createReimbursement);
-
-    function createReimbursement() {
-
-        let reimbursement = {
-
-        }
-    }
 
 </script>
 
