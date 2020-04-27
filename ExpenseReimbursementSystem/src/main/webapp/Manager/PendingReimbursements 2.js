@@ -1,6 +1,6 @@
 async function myFunction() {
 
-    let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/ManagerHome");
+    let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/AllPendingReimbursements");
 
     if (httpResponse.status === 403) {
         window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
@@ -18,7 +18,7 @@ async function myFunction() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jsonString)
     }
-    httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/EmployeesDetails?nameray=" + employeeRay, settings);
+    httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/EmployeesDetails", settings);
     let employees = await httpResponse.json();
     console.log(reimbursements);
     console.log(employees)
@@ -30,10 +30,9 @@ async function myFunction() {
             <td>${reimbursements[i].status}</td>
             <td>
    
-            
-            <button type="button" class="btn btn-success" reimbursementId=${reimbursements[i].reimbursementId} onclick="approve(this);">Approve</button></td><td>
+    
+            <button type="button" class="btn btn-success" reimbursementId=${reimbursements[i].reimbursementId} onclick="approve(this);">Approve</button>
             <button type="button" class="btn btn-danger" reimbursementId=${reimbursements[i].reimbursementId} onclick="deny(this);">Deny</button>
-
             </td>
             </tr>`
 

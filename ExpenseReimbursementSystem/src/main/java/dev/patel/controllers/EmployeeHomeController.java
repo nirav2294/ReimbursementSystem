@@ -125,9 +125,6 @@ public class EmployeeHomeController {
 
 	}
 
-	public void submitReimbursement(HttpServletRequest request, HttpServletResponse response) {
-
-	}
 
 	public void updateEmployeeProfile(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -203,19 +200,18 @@ public class EmployeeHomeController {
 
 	public void getEmployeeName(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
-			List<Employee> employees = new ArrayList<Employee>();
 			PrintWriter pw = response.getWriter();
-			String body = request.getReader().lines().reduce("", (accumulator,actual) ->accumulator+actual);
-			for(int i=2; i<body.length()-2; i+=2) {
-				char temp = body.charAt(i);
-				int id = Character.getNumericValue(temp);
-
-				employees.add(emplService.getEmployeeById(id));
-
-			} 
+			List<Employee> employees = new ArrayList<Employee>();
+			String id = request.getParameter("nameray");
+			System.out.println("id" +id);
+			String[] str = id.split(",");
+			for(int i=0; i<str.length; i++) {
+				employees.add(emplService.getEmployeeById(Integer.parseInt(str[i])));
+			}
 			String json = gson.toJson(employees);
 			System.out.println(json);
 			pw.append(json);
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}

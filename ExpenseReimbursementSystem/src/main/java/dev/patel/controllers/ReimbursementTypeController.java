@@ -27,7 +27,7 @@ public class ReimbursementTypeController {
 	private ReimbursementService rserv = new ReimbursementServiceImpl();
 	private EmployeeService emplService = new EmployeeServiceImpl();
 	Gson gson = new Gson();
-	
+
 	public void getAllTypes(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
@@ -44,8 +44,9 @@ public class ReimbursementTypeController {
 
 	}
 	public void submitReimbursement(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		try {
+
 			gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			PrintWriter pw = response.getWriter();
 			String body = request.getReader().lines().reduce("", (accumulator,actual) ->accumulator+actual);
@@ -57,7 +58,8 @@ public class ReimbursementTypeController {
 			r = rserv.submitReimbursement(r);
 			String json = gson.toJson(r);
 			pw.append(json);
-			
+
+
 		} catch(Exception e) {
 			System.out.println(e);
 		}

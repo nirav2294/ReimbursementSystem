@@ -15,15 +15,15 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../../../favicon.ico"> -->
 
-    <title>Employee Home Page</title>
+    <title>Statistics page</title>
     <link rel="stylesheet" href="CSS/table.css">
-   
+
 </head>
 
-<body >
+<body>
 
 
-    <div id="nav-placeholder"></div>
+    <div id="manager-placeholder"></div>
     <div class="max-width">
         <div class="card"> </div>
 
@@ -37,10 +37,34 @@
                 id="title">
                 <h6 class="card-title"
                     style="float: none; display: block; top: auto; text-align: left; text-decoration-line: none;"
-                    contenteditable="false" spellcheckker="false">Reimbursement History Report</h6>
+                    contenteditable="false" spellcheckker="false">Reimbursement Stats </h6>
             </div>
             <hr style="font-weight: 900; line-height: 20px;">
             <canvas id="myChart" style="max-width: 500px;"></canvas>
+
+            <div class="container"></div>
+            <p></p>
+            <div class="card-body"
+                style="margin-bottom: auto; margin-top: auto; margin-right: auto; padding-top: 20px; padding-bottom: 0px; font-weight: 500; display: block; top: auto; bottom: auto; float: none; line-height: 24px; width: 642px;"
+                id="title">
+                <h6 class="card-title"
+                    style="float: none; display: block; top: auto; text-align: left; text-decoration-line: none;"
+                    contenteditable="false" spellcheckker="false">Top 5 Most Employee Requests</h6>
+            </div>
+            <hr style="font-weight: 900; line-height: 20px;">
+            <canvas id="labelChart" style="max-width: 500px;"></canvas>
+
+            <div class="container"></div>
+            <p></p>
+            <div class="card-body"
+                style="margin-bottom: auto; margin-top: auto; margin-right: auto; padding-top: 20px; padding-bottom: 0px; font-weight: 500; display: block; top: auto; bottom: auto; float: none; line-height: 24px; width: 642px;"
+                id="title">
+                <h6 class="card-title"
+                    style="float: none; display: block; top: auto; text-align: left; text-decoration-line: none;"
+                    contenteditable="false" spellcheckker="false">Approved VS Denied </h6>
+            </div>
+            <hr style="font-weight: 900; line-height: 20px;">
+            <canvas id="approveDeny" style="max-width: 500px;"></canvas>
         </div>
         <div class="row marketing">
         </div>
@@ -55,43 +79,160 @@
 
 </body>
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
+    // getAllManagers
+
+
+    async function myFunction() {
+
+        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getManagerApproveStats");
+        if (httpResponse.status === 403) {
+            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
         }
-    });
-    </script>
+        let stats1 = await httpResponse.json();
+        let httpResponse1 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getAllManagers")
+        let stats2 = await httpResponse1.json();
+        console.log(stats1);
+        console.log(stats2);
+
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [stats2[0].firstName + " " + stats2[0].lastName, stats2[1].firstName + " " + stats2[1].lastName, stats2[2].firstName + " " + stats2[2].lastName, stats2[3].firstName + " " + stats2[3].lastName, stats2[4].firstName + stats2[4].lastName, stats2[5].firstName + " " + stats2[5].lastName, stats2[6].firstName + " " + stats2[6].lastName],
+                datasets: [{
+                    label: '$ Approved',
+                    data: [stats1[0], stats1[1], stats1[2], stats1[3], stats1[4], stats1[5], stats1[6]],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+    myFunction();
+
+
+    async function myFunction2() {
+
+        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getEmployeeRequestsStats");
+        if (httpResponse.status === 403) {
+            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+        }
+        let stats1 = await httpResponse.json();
+        let httpResponse1 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getAllEmployees")
+        let stats2 = await httpResponse1.json();
+        console.log(stats1);
+        console.log(stats2);
+
+
+
+
+        var ctxP = document.getElementById("labelChart").getContext('2d');
+        var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+                labels: [stats2[4].firstName + " " + stats2[4].lastName, stats2[5].firstName + " " + stats2[5].lastName, stats2[6].firstName + " " + stats2[6].lastName, stats2[7].firstName + " " + stats2[7].lastName, stats2[9].firstName + stats2[9].lastName],
+                datasets: [{
+                    data: [stats1[6], stats1[7], stats1[8], stats1[9], stats1[11]],
+                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'right',
+                    labels: {
+                        padding: 20,
+                        boxWidth: 10
+                    }
+                },
+                plugins: {
+                    datalabels: {
+
+                        color: 'white',
+                        labels: {
+                            title: {
+                                font: {
+                                    size: '16'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    myFunction2();
+
+
+    async function myFunction3() {
+
+        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/ApproveDeny");
+        let stats1 = await httpResponse.json();
+
+        console.log(stats1);
+
+
+        var ctx = document.getElementById('approveDeny').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Approved", "Denied"],
+                datasets: [{
+                    label: '$ Approved VS Denied',
+                    data: [stats1["Approved"], stats1["Denied"]],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+    myFunction3();
+
+</script>
 
 </html>

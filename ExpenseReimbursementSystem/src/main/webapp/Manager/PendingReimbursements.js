@@ -18,7 +18,7 @@ async function myFunction() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jsonString)
     }
-    httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/EmployeesDetails", settings);
+    httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/EmployeesDetails?nameray=" + employeeRay, settings);
     let employees = await httpResponse.json();
     console.log(reimbursements);
     console.log(employees)

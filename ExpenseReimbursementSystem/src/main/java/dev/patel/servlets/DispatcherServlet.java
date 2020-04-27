@@ -10,6 +10,7 @@ import dev.patel.controllers.EmployeeHomeController;
 import dev.patel.controllers.LoginController;
 import dev.patel.controllers.ManagerController;
 import dev.patel.controllers.ReimbursementTypeController;
+import dev.patel.controllers.StatsController;
 
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +23,7 @@ public class DispatcherServlet extends HttpServlet {
 	EmployeeHomeController employeeController = new EmployeeHomeController();
 	ManagerController managerController = new ManagerController();
 	ReimbursementTypeController rTypeController = new ReimbursementTypeController();
+	StatsController statsController = new StatsController();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -100,6 +102,20 @@ public class DispatcherServlet extends HttpServlet {
 		case "/ExpenseReimbursementSystem/api/submitReimbursement":
 			rTypeController.submitReimbursement(request, response);
 			break;
+		case "/ExpenseReimbursementSystem/api/getManagerApproveStats":
+			statsController.getManagerApproveStats(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/getEmployeeRequestsStats":
+			statsController.getEmployeeRequestStats(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/getAllEmployees":
+			statsController.getAllEmployees(request, response);
+			break;
+		case "/ExpenseReimbursementSystem/api/ApproveDeny":
+			statsController.approveDeny(request, response);
+			break;
+
+		
 		
 		default:
 			response.getWriter().append("Your request uri did not match anything");
