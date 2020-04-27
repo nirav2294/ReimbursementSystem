@@ -2,9 +2,9 @@ let managers;
 let types;
 async function myFunction() {
 
-    let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getCurrentUser");
+    let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getCurrentUser");
     if (httpResponse.status === 403) {
-        window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
     }
     let user = await httpResponse.json();
     console.log(user.employeeId);
@@ -12,7 +12,7 @@ async function myFunction() {
     document.getElementById("firstName").value = user.firstName;
     document.getElementById("lastName").value = user.lastName;
 
-    let httpResponse2 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getAllManagers");
+    let httpResponse2 = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getAllManagers");
     managers = await httpResponse2.json();
     console.log(managers)
     let selectData = document.getElementById("managerId");
@@ -23,7 +23,7 @@ async function myFunction() {
         selectData.appendChild(option);
     }
 
-    let httpResponse3 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getReimbursementTypes");
+    let httpResponse3 = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getReimbursementTypes");
     types = await httpResponse3.json();
 
     let selectType = document.getElementById("type");
@@ -61,7 +61,7 @@ async function createReimbursement() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reimbursement)
     }
-    let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/submitReimbursement" , settings);
+    let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/submitReimbursement" , settings);
     let r = await httpResponse.json();
     if(r != null){
         alert("Reimbursement Submitted \n" + "ReimbursementId = " + r.reimbursementId);
