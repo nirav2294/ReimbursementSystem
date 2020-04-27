@@ -1,8 +1,8 @@
 async function myFunction() {
 
-    let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/PendingRequests");
+    let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/PendingRequests");
     if (httpResponse.status === 403) {
-        window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
     }
     let reimbursements = await httpResponse.json();
 
@@ -17,9 +17,9 @@ async function myFunction() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jsonString)
     }
-    httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/ManagerDetails", settings);
+    httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/ManagerDetails", settings);
     if (httpResponse.status === 403) {
-        window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
     }
     let managers = await httpResponse.json();
     console.log(reimbursements);
