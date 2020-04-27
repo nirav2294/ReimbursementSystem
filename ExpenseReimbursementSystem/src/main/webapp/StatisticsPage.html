@@ -84,12 +84,12 @@
 
     async function myFunction() {
 
-        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getManagerApproveStats");
+        let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getManagerApproveStats");
         if (httpResponse.status === 403) {
-            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+            window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
         }
         let stats1 = await httpResponse.json();
-        let httpResponse1 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getAllManagers")
+        let httpResponse1 = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getAllManagers")
         let stats2 = await httpResponse1.json();
         console.log(stats1);
         console.log(stats2);
@@ -139,12 +139,12 @@
 
     async function myFunction2() {
 
-        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getEmployeeRequestsStats");
+        let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getEmployeeRequestsStats");
         if (httpResponse.status === 403) {
-            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+            window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
         }
         let stats1 = await httpResponse.json();
-        let httpResponse1 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getAllEmployees")
+        let httpResponse1 = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getAllEmployees")
         let stats2 = await httpResponse1.json();
         console.log(stats1);
         console.log(stats2);
@@ -193,7 +193,7 @@
 
     async function myFunction3() {
 
-        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/ApproveDeny");
+        let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/ApproveDeny");
         let stats1 = await httpResponse.json();
 
         console.log(stats1);
