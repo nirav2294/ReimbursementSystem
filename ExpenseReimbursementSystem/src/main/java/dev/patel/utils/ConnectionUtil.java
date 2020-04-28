@@ -20,7 +20,7 @@ public class ConnectionUtil {
 		try {
 
 			Class.forName("org.mariadb.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mariadb://niravdb.cb3a2xejnvha.us-east-2.rds.amazonaws.com:3306/Project1?user=nirav2294&password=!Jaigurudev9326");
+			Connection conn = DriverManager.getConnection("");
 			return conn;
 
 
