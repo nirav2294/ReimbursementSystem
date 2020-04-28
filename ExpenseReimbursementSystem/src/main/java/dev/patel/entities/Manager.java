@@ -75,7 +75,7 @@ public class Manager {
 	@Override
 	public String toString() {
 		return "Manager [managerId=" + managerId + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
-				+ userName + ", email=" + email + ", password=" + password + "]";
+				+ userName + ", email=" + email + ", password=" + password + "]\n";
 	}
 	
 	

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript"
+        src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.16.0/js/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .max-width {
+            max-width: 1350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+
+</head>
+
+
+<body onload="myFunction()">
+    <div class="max-width">
+        <div class="card"> </div>
+        <nav class="navbar navbar-expand-xl navbar-light bg-light">
+            <a class="navbar-brand" href="http://localhost:8080/ExpenseReimbursementSystem/EmployeeHome.html"><img
+                    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/846a9086-8a40-43e0-aa10-2fc7d6d73730/dd4bz30-1d55fffc-6517-422f-9609-680cc512ef12.png/v1/fill/w_1280,h_1385,strp/avengers__endgame__2019__avengers_logo_png__by_mintmovi3_dd4bz30-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTM4NSIsInBhdGgiOiJcL2ZcLzg0NmE5MDg2LThhNDAtNDNlMC1hYTEwLTJmYzdkNmQ3MzczMFwvZGQ0YnozMC0xZDU1ZmZmYy02NTE3LTQyMmYtOTYwOS02ODBjYzUxMmVmMTIucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.HSwQpmD6VQVxpTovHw2AfJBINQC5dmlYqKxjvTGP_Fo"
+                    width="30" height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link"
+                            href="http://localhost:8080/ExpenseReimbursementSystem/EmployeeHome.html">Home <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="http://localhost:8080/ExpenseReimbursementSystem/PendingRequest.html">View Pending
+                            Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="http://localhost:8080/ExpenseReimbursementSystem/ApprovedRequest.html">View Approved
+                            Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="http://localhost:8080/ExpenseReimbursementSystem/Reimbursement.html">Expense
+                            Reimbursement</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"
+                                href="http://localhost:8080/ExpenseReimbursementSystem/UpdateProfile.html">Update
+                                Profile</a>
+                            <a class="dropdown-item"
+                                href="http://localhost:8080/ExpenseReimbursementSystem/UpdatePassword.html">Update
+                                Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" onclick="logout()"
+                                href="http://localhost:8080/ExpenseReimbursementSystem/index.html">Logout</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</body>
+
+
+
+<script src="JS/navbar2.js">
+
+</script>
+
+
+
+</html>

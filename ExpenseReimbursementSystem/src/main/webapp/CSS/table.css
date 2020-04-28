@@ -1,0 +1,10 @@
+.table td,
+        th ,tr{
+            text-align: center;
+        }
+
+        .max-width {
+            max-width: 1350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
