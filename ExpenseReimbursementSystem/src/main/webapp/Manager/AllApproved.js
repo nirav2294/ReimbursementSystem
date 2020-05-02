@@ -1,9 +1,9 @@
 async function myFunction() {
 
-    let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/AllApprovedReimbursements");
+    let httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/AllApprovedReimbursements");
 
     if (httpResponse.status === 403) {
-        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
+        window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
     }
     let reimbursements = await httpResponse.json();
     console.log(reimbursements);
@@ -18,7 +18,7 @@ async function myFunction() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jsonString)
     }
-    httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/EmployeesDetails?nameray=" + employeeRay, settings);
+    httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/EmployeesDetails?nameray=" + employeeRay, settings);
     let employees = await httpResponse.json();
     console.log(reimbursements);
     console.log(employees)
