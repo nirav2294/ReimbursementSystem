@@ -1,9 +1,9 @@
 async function myFunction() {
 
-    let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/AllPendingReimbursements");
+    let httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/AllPendingReimbursements");
 
     if (httpResponse.status === 403) {
-        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
+        window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
     }
     let reimbursements = await httpResponse.json();
     console.log(reimbursements);
@@ -18,7 +18,7 @@ async function myFunction() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(jsonString)
     }
-    httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/EmployeesDetails?nameray=" + employeeRay, settings);
+    httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/EmployeesDetails?nameray=" + employeeRay, settings);
     let employees = await httpResponse.json();
     console.log(reimbursements);
     console.log(employees)
@@ -52,13 +52,13 @@ async function approve(element) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reimbursement)
     }
-    httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/ApproveReimbursement", settings);
+    httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/ApproveReimbursement", settings);
 
     if (httpResponse.status === 403) {
-        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
+        window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
     }
     else{
-        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/ManagerHome.html";
+        window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/ManagerHome.html";
     }
     console.log(httpResponse);
 }
@@ -74,13 +74,13 @@ async function deny(element) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reimbursement)
     }
-    httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/DenyReimbursement", settings);
+    httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/DenyReimbursement", settings);
 
     if (httpResponse.status === 403) {
-        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
+        window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
     }
     else{
-        window.location.href = "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/ManagerHome.html";
+        window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/ManagerHome.html";
     }
     console.log(httpResponse);
 }
