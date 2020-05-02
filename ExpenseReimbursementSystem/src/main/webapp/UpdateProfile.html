@@ -115,7 +115,7 @@
 <script>
 
     async function myFunction() {
-        let httpResponse = await fetch("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getCurrentUser");
+        let httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getCurrentUser");
         let user = await httpResponse.json();
         console.log(user.employeeId);
         document.getElementById("employeeId").value = user.employeeId;
@@ -153,17 +153,17 @@
                 }
                 else if( xhr.responseText === "false"){
                     alert("No change in email or username!")
-                    window.location.href = ("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/EmployeeHome.html");
+                    window.location.href = ("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/EmployeeHome.html");
                 }
                 else{
                     alert("Profile updated successfully!")
-                    window.location.href = ("http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/EmployeeHome.html");
+                    window.location.href = ("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/EmployeeHome.html");
                 }
             }
 
         }
 
-        xhr.open("POST", "http://ec2-3-17-161-23.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/UpdateProfile");
+        xhr.open("POST", "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/UpdateProfile");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(myJSON);
 
