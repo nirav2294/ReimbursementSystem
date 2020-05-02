@@ -114,9 +114,9 @@
 
      async function myFunction() {
 
-        let httpResponse = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getCurrentUser");
+        let httpResponse = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getCurrentUser");
         if (httpResponse.status === 403) {
-            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+            window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
         }
         let user = await httpResponse.json();
         console.log(user.employeeId);
@@ -124,9 +124,9 @@
         document.getElementById("firstName").value = user.firstName;
         document.getElementById("lastName").value = user.lastName;
 
-        let httpResponse2 = await fetch("http://localhost:8080/ExpenseReimbursementSystem/api/getAllManagers");
+        let httpResponse2 = await fetch("http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/api/getAllManagers");
         if (httpResponse.status === 403) {
-            window.location.href = "http://localhost:8080/ExpenseReimbursementSystem/index.html";
+            window.location.href = "http://ec2-3-133-103-178.us-east-2.compute.amazonaws.com:8080/ExpenseReimbursementSystem/index.html";
         }
         let managers = await httpResponse2.json();
         console.log(managers)
