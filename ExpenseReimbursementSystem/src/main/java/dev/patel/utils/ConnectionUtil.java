@@ -14,13 +14,11 @@ public class ConnectionUtil {
 
 		// jdbc:RDBMS:locationofdatabase:port/db?user=value&password=value
 
-		// String details =
-		// "jdbc:mariadb://niravdb.cb3a2xejnvha.us-east-2.rds.amazonaws.com:3306/BankApplication?user=nirav2294&password=!Jaigurudev9326";
-
+		
 		try {
 
 			Class.forName("org.mariadb.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("");
+			Connection conn = DriverManager.getConnection("jdbc:mariadb://niravdb.cb3a2xejnvha.us-east-2.rds.amazonaws.com:3306/Project1?user=nirav2294&password=!Jaigurudev9326");
 			return conn;
 
 
